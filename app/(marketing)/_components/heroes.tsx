@@ -9,7 +9,7 @@ export function Heroes() {
           <Image
             src="/cover_notion.png"
             fill
-            className="object-contain"
+            className="object-contain dark:invert"
             alt="Work Hard"
           />
         </div>
