@@ -3,6 +3,7 @@
 import { useSettings } from "@/hooks/use-setting";
 import { Dialog, DialogContent, DialogHeader } from "../ui/dialog";
 import { Label } from "../ui/label";
+import { ModeToggle } from "../mode-toggle";
 
 export const SettingsModal = () => {
   const settings = useSettings();
@@ -18,6 +19,7 @@ export const SettingsModal = () => {
             <Label>Appearance</Label>
             <span>Customize how Jotion looks on your device</span>
           </div>
+          <ModeToggle />
         </div>
       </DialogContent>
     </Dialog>
