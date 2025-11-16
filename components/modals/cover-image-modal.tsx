@@ -28,6 +28,9 @@ export const CoverImageModal = () => {
         file,
         signal,
         onProgressChange,
+        options: {
+          replaceTargetUrl: coverImage.url,
+        },
       });
 
       await update({
