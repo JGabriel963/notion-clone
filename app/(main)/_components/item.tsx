@@ -51,7 +51,6 @@ export const Item = ({
   onExpand,
 }: ItemProps) => {
   const { user } = useUser();
-  const router = useRouter();
   const create = useMutation(api.documents.create);
   const archive = useMutation(api.documents.archive);
 
@@ -148,7 +147,9 @@ export const Item = ({
                 Delete
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <div>Last edited by: {user?.fullName}</div>
+              <div className="text-sm text-muted-foreground p-2">
+                Last edited by: {user?.fullName}
+              </div>
             </DropdownMenuContent>
           </DropdownMenu>
           <div
