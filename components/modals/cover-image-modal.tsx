@@ -15,7 +15,7 @@ import { useParams } from "next/navigation";
 import { Id } from "@/convex/_generated/dataModel";
 
 export const CoverImageModal = () => {
-  const params = useParams();
+  const params = useParams<{ documentId: string }>();
   const update = useMutation(api.documents.update);
   const { edgestore } = useEdgeStore();
   const coverImage = useCoverImage();
@@ -44,6 +44,10 @@ export const CoverImageModal = () => {
     },
     [edgestore]
   );
+
+  if (!params.documentId) {
+    return null;
+  }
 
   return (
     <Dialog open={coverImage.isOpen} onOpenChange={coverImage.onClose}>
