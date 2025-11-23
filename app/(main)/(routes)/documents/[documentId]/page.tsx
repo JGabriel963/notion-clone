@@ -1,12 +1,12 @@
 "use client";
-import { use } from "react";
+import { use, useMemo } from "react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
 import { Toolbar } from "@/components/toolbar";
 import { Cover } from "@/components/cover";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Editor } from "@/components/editor";
+import dynamic from "next/dynamic";
 
 type Params = Promise<{ documentId: Id<"documents"> }>;
 
@@ -16,6 +16,10 @@ interface DocumentIdPageProps {
 
 export default function DocumentPage(props: DocumentIdPageProps) {
   const params = use(props.params);
+  const Editor = useMemo(
+    () => dynamic(() => import("@/components/editor"), { ssr: false }),
+    []
+  );
 
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId,

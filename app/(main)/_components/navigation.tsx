@@ -27,8 +27,10 @@ import { TrashBox } from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-setting";
 import { Navbar } from "./navbar";
+import { useRouter } from "next/navigation";
 
 export default function Navigation() {
+  const router = useRouter();
   const settings = useSettings();
   const search = useSearch();
   const params = useParams();
@@ -118,7 +120,9 @@ export default function Navigation() {
   };
 
   const handleCreate = () => {
-    const promise = create({ title: "Untited" });
+    const promise = create({ title: "Untited" }).then((documentId) =>
+      router.push(`/documents/${documentId}`)
+    );
 
     toast.promise(promise, {
       loading: "Creating a new note...",
